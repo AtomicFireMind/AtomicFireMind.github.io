@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title>Hexo启航:+GitHub Pages部署</title>
+    <url>/2021/05/22/Hexo/Hexo_GitPage/</url>
+    <content><![CDATA[<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mspace width="2em"/></mrow><annotation encoding="application/x-tex">\qquad</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0em;vertical-align:0em;"></span><span class="mspace" style="margin-right:2em;"></span></span></span></span>继本地博客搭建完成，现在让它能够实现远程共享。没有进行调研，直接地就选择了GitHub Page，因为Hexo提供了其一键部署的功能，非常方便简单。</p>
+<span id="more"></span>
+<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mspace width="2em"/></mrow><annotation encoding="application/x-tex">\qquad</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0em;vertical-align:0em;"></span><span class="mspace" style="margin-right:2em;"></span></span></span></span>说其简单，主要是Hexo<a href="https://hexo.io/zh-cn/docs/one-command-deployment.html#:~:text=Hexo%20%E6%8F%90%E4%BE%9B%E4%BA%86%E5%BF%AB%E9%80%9F%E6%96%B9%E4%BE%BF%E7%9A%84%E4%B8%80%E9%94%AE%E9%83%A8%E7%BD%B2%E5%8A%9F%E8%83%BD%EF%BC%8C%E8%AE%A9%E6%82%A8%E5%8F%AA%E9%9C%80%E4%B8%80%E6%9D%A1%E5%91%BD%E4%BB%A4%E5%B0%B1%E8%83%BD%E5%B0%86%E7%BD%91%E7%AB%99%E9%83%A8%E7%BD%B2%E5%88%B0%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A%E3%80%82.%20%24%20hexo%20deploy.%20%E5%9C%A8%E5%BC%80%E5%A7%8B%E4%B9%8B%E5%89%8D%EF%BC%8C%E6%82%A8%E5%BF%85%E9%A1%BB%E5%85%88%E5%9C%A8%20_config.yml%20%E4%B8%AD%E4%BF%AE%E6%94%B9%E5%8F%82%E6%95%B0%EF%BC%8C%E4%B8%80%E4%B8%AA%E6%AD%A3%E7%A1%AE%E7%9A%84%E9%83%A8%E7%BD%B2%E9%85%8D%E7%BD%AE%E4%B8%AD%E8%87%B3%E5%B0%91%E8%A6%81%E6%9C%89,deployer%EF%BC%8CHexo%20%E4%BC%9A%E4%BE%9D%E7%85%A7%E9%A1%BA%E5%BA%8F%E6%89%A7%E8%A1%8C%E6%AF%8F%E4%B8%AA%20deployer%E3%80%82.%20deploy%3A%20-%20type%3A%20git.%20repo%3A">部署</a>步骤很少：</p>
+<h2 id="github仓库创建及插件安装"><a class="markdownIt-Anchor" href="#github仓库创建及插件安装"></a> GitHub仓库创建及插件安装</h2>
+<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mspace width="2em"/></mrow><annotation encoding="application/x-tex">\qquad</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0em;vertical-align:0em;"></span><span class="mspace" style="margin-right:2em;"></span></span></span></span>仓库创建就不多说了，自行百度/谷歌吧，不过因为部署博客，仓库创建有点小细节需要注意:<br />
+<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mspace width="2em"/></mrow><annotation encoding="application/x-tex">\qquad</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0em;vertical-align:0em;"></span><span class="mspace" style="margin-right:2em;"></span></span></span></span><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mspace width="2em"/></mrow><annotation encoding="application/x-tex">\qquad</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0em;vertical-align:0em;"></span><span class="mspace" style="margin-right:2em;"></span></span></span></span>    - 所部署的仓库必须是Public,否则网页将不能访问<br />
+<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mspace width="2em"/></mrow><annotation encoding="application/x-tex">\qquad</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0em;vertical-align:0em;"></span><span class="mspace" style="margin-right:2em;"></span></span></span></span><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mspace width="2em"/></mrow><annotation encoding="application/x-tex">\qquad</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0em;vertical-align:0em;"></span><span class="mspace" style="margin-right:2em;"></span></span></span></span>    - 仓库名称(repository name)需要是：<a href="http://xn--eqr924avxo.github.io">用户名.github.io</a> <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mspace linebreak="newline"></mspace></mrow><annotation encoding="application/x-tex">\\</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="mspace newline"></span></span></span> <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mspace width="2em"/></mrow><annotation encoding="application/x-tex">\qquad</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0em;vertical-align:0em;"></span><span class="mspace" style="margin-right:2em;"></span></span></span></span><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mspace width="2em"/></mrow><annotation encoding="application/x-tex">\qquad</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0em;vertical-align:0em;"></span><span class="mspace" style="margin-right:2em;"></span></span></span></span>#用户名即github账户名称，比如：<a href="http://visioner3d.github.io">visioner3d.github.io</a><br />
+<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mspace width="2em"/></mrow><annotation encoding="application/x-tex">\qquad</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0em;vertical-align:0em;"></span><span class="mspace" style="margin-right:2em;"></span></span></span></span><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mspace width="2em"/></mrow><annotation encoding="application/x-tex">\qquad</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0em;vertical-align:0em;"></span><span class="mspace" style="margin-right:2em;"></span></span></span></span>    - 仓库branches设置需要与_config.yml配置一致<br />
+<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mspace width="2em"/></mrow><annotation encoding="application/x-tex">\qquad</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0em;vertical-align:0em;"></span><span class="mspace" style="margin-right:2em;"></span></span></span></span>部署插件安装就一句话，进入博客顶目录，执行:npm install hexo-deployer-git --save</p>
+<h2 id="部署"><a class="markdownIt-Anchor" href="#部署"></a> 部署</h2>
+<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mspace width="2em"/></mrow><annotation encoding="application/x-tex">\qquad</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0em;vertical-align:0em;"></span><span class="mspace" style="margin-right:2em;"></span></span></span></span>部署首先需要进行配置更改，在博客_config.yml文件中，找到deploy关键字，按如下配置：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repo: &lt;repository url&gt; #https://github.com/visioner3d/visioner3d.github.io.git</span><br><span class="line">  branch: [main]</span><br></pre></td></tr></table></figure>
+<p>然后执行:hexo clean &amp;&amp; hexo deploy就可以了，如果打开网页没有显示，可能需要稍等片刻，毕竟github在国内访问速度确实不敢恭维。</p>
+]]></content>
+      <categories>
+        <category>静态博客</category>
+        <category>Hexo</category>
+      </categories>
+      <tags>
+        <tag>Hexo</tag>
+        <tag>Next Theme</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hexo启航:+Next主题配置</title>
+    <url>/2021/05/22/Hexo/Hexo_Starter/</url>
+    <content><![CDATA[<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mspace width="2em"/></mrow><annotation encoding="application/x-tex">\qquad</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0em;vertical-align:0em;"></span><span class="mspace" style="margin-right:2em;"></span></span></span></span>最近思量写博客来记录学习，通过查阅博客撰写相关的资料，发现很多关于静态博客相关的东西，其中网上很多关于Hugo、Hexo与Jekyll的对比。鉴于Hugo使用Go,Jekyll使用Ruby,Hexo使用Javascipt，而关于网页我最开始能联想到的就是html/javascript/css，且网上关于Hexo的文档及资源也比较多，主题丰富，开发生态不错，所以选择了Hexo。</p>
+<span id="more"></span>
+<!--toc-->
+<h3 id="轻松的开始到差点放弃"><a class="markdownIt-Anchor" href="#轻松的开始到差点放弃"></a> 轻松的开始到差点放弃</h3>
+<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mspace width="2em"/></mrow><annotation encoding="application/x-tex">\qquad</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0em;vertical-align:0em;"></span><span class="mspace" style="margin-right:2em;"></span></span></span></span>follow官网主页 <a href="https://hexo.io/zh-cn/index.html">Hexo</a>就可以很快地搭建起Demo博客。简单步骤如下：</p>
+<ul>
+<li>安装软件
+<ul>
+<li>Nodejs</li>
+<li>Git</li>
+</ul>
+</li>
+<li>Hexo快速指南<br />
+跟着下面的步骤走，网页中输入http://localhost:4000/，很快就能看到基于默认Landscape主题的博客页。<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm install hexo-cli -g</span><br><span class="line">hexo init blog</span><br><span class="line">cd blog</span><br><span class="line">npm install</span><br><span class="line">hexo server</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mspace width="2em"/></mrow><annotation encoding="application/x-tex">\qquad</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0em;vertical-align:0em;"></span><span class="mspace" style="margin-right:2em;"></span></span></span></span>关于主题，也是简单地了解了一些，简洁、易用、稳定、成熟的主题是我的首选，因此选择了大家广泛使用的Next主题。Hexo Next主题的网文资料也是很多，基本上按任意一篇博文指导下载对应的主题放入刚建立的博客themes文件夹下，重命名为next，然后在blog/_config.xml中启用theme: next，重新启动server就可以看到主题渲染的博客。<br />
+<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mspace width="2em"/></mrow><annotation encoding="application/x-tex">\qquad</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0em;vertical-align:0em;"></span><span class="mspace" style="margin-right:2em;"></span></span></span></span>由于经常需要与数学公式打交道，所以公式的渲染也是主要的需求。高兴地是，Next主题支持MathJax和Katex公式渲染；然而，follow好些篇博文（包含iissan的）配置，要么出现公式不渲染，要么出现公式源码和公式同时渲染，真是差点从开始到丢弃。。。</p>
+<h3 id="成功配置"><a class="markdownIt-Anchor" href="#成功配置"></a> 成功配置</h3>
+<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mspace width="2em"/></mrow><annotation encoding="application/x-tex">\qquad</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0em;vertical-align:0em;"></span><span class="mspace" style="margin-right:2em;"></span></span></span></span>经过不懈地折腾，最终还是成功地实现了公式地渲染。Next主题获取渠道很多，刚开始我是根据github iissan和theme-next.org的配置，最新发布版本分别是v5.1.4和v7.8.0，结果无论如何都不能正常渲染公式，会出现公式源码。最后通过下图star星最少的链接，下载8.4.0版本，然后在theme/next/_config.yml启用katex:true,愉快地实现了公式正常的渲染。<br />
+<img src="nextsrc.PNG" alt="NextSource" /><br />
+<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mspace width="2em"/></mrow><annotation encoding="application/x-tex">\qquad</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0em;vertical-align:0em;"></span><span class="mspace" style="margin-right:2em;"></span></span></span></span> 现在也还是不清楚这几个链接之间的关系，尤其后面两个，其中一个提供主页是<a href="theme-next.org">theme-next.org</a>，一个是<a href="theme-next.js.org">theme-next.js.org</a>。不过暂时能满足我最基本的需求了，先不想去了解，往下写写再说吧。</p>
+]]></content>
+      <categories>
+        <category>静态博客</category>
+        <category>Hexo</category>
+      </categories>
+      <tags>
+        <tag>Hexo</tag>
+        <tag>Next Theme</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>《Todo》</title>
+    <url>/2021/05/22/Mathmatics/Calculus/TheCalculusLifeSaver/</url>
+    <content><![CDATA[<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>E</mi><mo>=</mo><mi>m</mi><mo>∗</mo><msup><mi>c</mi><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">E = m*c^2 
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.05764em;">E</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.46528em;vertical-align:0em;"></span><span class="mord mathdefault">m</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.8641079999999999em;vertical-align:0em;"></span><span class="mord"><span class="mord mathdefault">c</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641079999999999em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span></span></p>
+]]></content>
+      <tags>
+        <tag>微积分</tag>
+      </tags>
+  </entry>
+</search>
